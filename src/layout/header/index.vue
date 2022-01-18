@@ -38,7 +38,7 @@ const image = require("@/assets/fond-menu.png");
       color: #401500;
       font-family: "Berry_Rotunda";
 
-      &.router-link-active {
+      &.router-link-exact-active {
         color: #bd5421;
       }
     }
