@@ -1,25 +1,43 @@
 <template>
-  <el-header>
-    <el-menu
-      :default-active="route.path"
-      mode="horizontal"
-      background-color="#b3c0d1"
-      :router="true"
+  <el-row class="menu">
+    <el-col
+      :span="7"
+      :md="4"
+      :style="{ backgroundImage: 'url(' + image + ')' }"
     >
-      <el-menu-item index="/" path="/about"> Personnage </el-menu-item>
-      <el-menu-item index="/caserne" path="/caserne"> Caserne </el-menu-item>
-    </el-menu>
-  </el-header>
+      <router-link to="/"> Personnage </router-link>
+    </el-col>
+    <el-col
+      :span="7"
+      :md="4"
+      :style="{ backgroundImage: 'url(' + image + ')' }"
+    >
+      <router-link to="/caserne"> Caserne </router-link>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
-
-let route = useRoute();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const image = require("@/assets/fond-menu.png");
 </script>
 
 <style lang="scss" scoped>
-.el-menu.el-menu--horizontal {
-  border-bottom: 0;
+.menu {
+  background-size: contain;
+  height: 40px;
+
+  .el-col {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 17px 0 0;
+
+    a {
+      text-decoration: none;
+      color: #401500;
+      font-family: "Berry_Rotunda";
+    }
+  }
 }
 </style>
