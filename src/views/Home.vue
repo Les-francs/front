@@ -21,7 +21,7 @@
           <h2>Evenements</h2>
         </el-col>
       </el-row>
-      <el-scrollbar height="86vh">
+      <el-scrollbar height="89vh">
         <el-row :gutter="10">
           <el-col
             v-for="(event, key) in eventsState"
