@@ -1,9 +1,14 @@
 <template>
   <el-row style="margin-top: 10px">
     <el-col>
-      <el-select v-model="selected" class="m-2" placeholder="Select" filterable>
+      <el-select
+        v-model="selected"
+        class="m-2"
+        placeholder="Selectionner une unité"
+        filterable
+      >
         <el-option
-          v-for="item in uniteState"
+          v-for="item in getUnitesSortedByName()"
           :key="item.id"
           :label="item.name"
           :value="item.id"
@@ -30,12 +35,12 @@
 
 <script lang="ts" setup>
 import Unite from "@/components/Unite.vue";
-import { state as uniteState } from "@/store/unites";
+import { getUnitesSortedByName, state as uniteState } from "@/store/unites";
 import { state as personnageState } from "@/store/personnage";
 import { addUnite } from "@/store/personnage";
 import { ref } from "vue";
 
-const selected = ref(0);
+const selected = ref();
 </script>
 
 <style lang="scss" scoped>

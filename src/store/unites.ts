@@ -659,3 +659,6 @@ export const state: Ref<Unite[]> = ref([
     inCaserne: 0,
   },
 ]);
+
+export const getUnitesSortedByName = (): Unite[] =>
+  state.value.sort((a, b) => a.name.localeCompare(b.name));
