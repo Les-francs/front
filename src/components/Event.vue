@@ -55,8 +55,12 @@ const image = require("@/assets/fond-event.png");
   background-size: cover;
   background-repeat: no-repeat;
   padding: 30px 40px 0 0;
-  height: 246px;
+  height: 30vw;
   margin-bottom: 10px;
+
+  @media screen and (min-width: 1200px) {
+    height: 16.5vw;
+  }
 
   h2 {
     color: #401500;

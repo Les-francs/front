@@ -27,7 +27,7 @@
             v-for="(event, key) in eventsState"
             :key="key"
             :span="24"
-            :md="12"
+            :lg="12"
           >
             <Event :id="key" />
           </el-col>
