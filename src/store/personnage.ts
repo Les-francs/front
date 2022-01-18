@@ -3,7 +3,7 @@ import { Unite } from "./unites";
 
 interface UnitePersonnage extends Unite {
   level: number;
-  maitrise: string;
+  maitrise: "bl" | "elite" | "max" | "auxiliaire";
   drawer: boolean;
 }
 
@@ -32,7 +32,7 @@ export const addUnite = (unite?: Unite): void => {
     state.value.unites.push({
       ...unite,
       level: 1,
-      maitrise: "Débutant",
+      maitrise: "bl",
       drawer: false,
     });
   }
