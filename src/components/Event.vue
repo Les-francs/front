@@ -54,7 +54,9 @@ const image = require("@/assets/fond-event.png");
 .event {
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 30px 40px 42px 0;
+  padding: 30px 40px 0 0;
+  height: 246px;
+  margin-bottom: 10px;
 
   h2 {
     color: #401500;
