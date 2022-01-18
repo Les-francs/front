@@ -1,0 +1,29 @@
+/*
+Write your variables here. All available variables can be
+found in element-plus/packages/theme-chalk/src/common/var.scss.
+For example, to overwrite the theme color:
+*/
+// $--color-primary: hotpink;
+
+$--color-primary: #401500;
+
+/* icon font path, required */
+$--font-path: '~element-plus/lib/theme-chalk/fonts';
+@import '~normalize.css';
+@import "~element-plus/packages/theme-chalk/src/index";
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#app, .el-container {
+    height: 100vh;
+    width: 100vw;
+}
