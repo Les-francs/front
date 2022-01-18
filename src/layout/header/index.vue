@@ -37,6 +37,10 @@ const image = require("@/assets/fond-menu.png");
       text-decoration: none;
       color: #401500;
       font-family: "Berry_Rotunda";
+
+      &.router-link-active {
+        color: #bd5421;
+      }
     }
   }
 }
