@@ -8,7 +8,8 @@
             <button
               @click="personnageState.editMode = !personnageState.editMode"
             >
-              <font-awesome-icon icon="trash" />
+              <font-awesome-icon v-if="personnageState.editMode" icon="user-check" />
+              <font-awesome-icon v-else icon="user-edit" />
             </button>
           </h2>
         </el-col>

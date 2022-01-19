@@ -1,8 +1,10 @@
 <template>
   <div :style="{ backgroundImage: 'url(' + image + ')' }" style="height: 100%">
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -48,7 +50,7 @@ h2 {
 input,
 select {
   background-color: rgba(0, 0, 0, 0.4);
-  margin: 0 0 10px;
+  margin: 0 0 10px !important;
   padding: 10px;
   border-radius: 20px;
   width: 100%;
