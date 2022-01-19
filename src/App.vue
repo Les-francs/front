@@ -20,7 +20,7 @@ const image = require("@/assets/wallpaperbetter.com_1920x1200.jpg");
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
@@ -43,5 +43,23 @@ h2 {
 
 .fullSelect {
   width: 100%;
+}
+
+input,
+select {
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 0 10px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+  color: #ddd;
+}
+
+label {
+  color: white;
+}
+
+::placeholder {
+  color: rgba($color: #ddd, $alpha: 0.6);
 }
 </style>

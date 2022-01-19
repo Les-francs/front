@@ -1,11 +1,12 @@
 <template>
-  <transition name="fade">
-    <el-row v-if="state.editMode">
+  <transition name="fade" mode="out-in">
+    <el-row v-if="state.editMode" class="editClasse">
       <el-col :span="6" v-for="(url, name) in classes" :key="name">
         <el-image
           :class="name != state.classe ? 'disabled' : ''"
           :src="url"
           @click="state.classe = name"
+          fit="contain"
         ></el-image>
       </el-col>
     </el-row>
@@ -47,20 +48,21 @@ const classes = {
 </script>
 
 <style lang="scss" scoped>
+.editClasse {
+  margin-bottom: 20px;
+}
 .classe {
   height: 58vh;
   max-height: 37vw;
   background-position-x: center;
   background-size: contain;
   position: relative;
-  background-repeat-x: no-repeat;
-  background-repeat-y: no-repeat;
-}
-
-.el-image {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  background-repeat: no-repeat;
+  .el-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
 }
 </style>

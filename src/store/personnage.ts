@@ -11,7 +11,6 @@ export interface Personnage {
   pseudo: string;
   influence: number;
   maison: string;
-  prochaine_guerre: string;
   classe: string;
   unites: UnitePersonnage[];
   editMode: boolean;
@@ -21,7 +20,6 @@ export const state: Ref<Personnage> = ref({
   pseudo: "Vilsafur",
   influence: 700,
   maison: "Les francs",
-  prochaine_guerre: "ne-sais-pas",
   classe: "longbow",
   unites: [],
   editMode: false,

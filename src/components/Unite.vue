@@ -146,24 +146,6 @@ const img = require("@/assets/unites/" +
     img {
       object-fit: cover;
     }
-
-    input,
-    select {
-      background-color: rgba(0, 0, 0, 0.4);
-      margin: 0 0 10px;
-      padding: 10px;
-      border-radius: 20px;
-      width: 100%;
-      color: #ddd;
-    }
-
-    label {
-      color: white;
-    }
-
-    ::placeholder {
-      color: rgba($color: #ddd, $alpha: 0.6);
-    }
   }
 }
 
