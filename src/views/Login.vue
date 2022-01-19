@@ -3,12 +3,15 @@
     <el-col :span="6">
       <el-row>
         <el-col>
-          <input v-model="form.name" placeholder="Identifiant..." />
+          <input
+            @keypress.enter="onSubmit"
+            v-model="form.name"
+            placeholder="Identifiant..."
+          />
         </el-col>
-      </el-row>
-      <el-row>
         <el-col>
           <input
+            @keypress.enter="onSubmit"
             v-model="form.password"
             placeholder="Mot de passe..."
             type="password"
