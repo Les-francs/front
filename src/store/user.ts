@@ -5,7 +5,7 @@ export interface User {
   authenticated: boolean;
 }
 export const state: Ref<User> = ref({
-  authenticated: true,
+  authenticated: false,
 });
 
 export const checkLogin = (login: {
