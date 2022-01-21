@@ -107,4 +107,11 @@ export const state: Ref<Event[]> = ref([
     name: "GVG",
     description: "Guerre de maison",
   },
+  {
+    id: 15,
+    dateDebut: "2022-01-15 19h30",
+    dateFin: "2022-01-16 21h00",
+    name: "GVG",
+    description: "Guerre de maison",
+  },
 ]);
