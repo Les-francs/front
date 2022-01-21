@@ -1,7 +1,7 @@
 <template>
   <div
     class="unite"
-    :class="state.unites[uniteId].rarity"
+    :class="state.unites[uniteId].unite.rarity"
     @click="state.unites[uniteId].drawer = true"
   >
     <el-row>
@@ -11,19 +11,19 @@
     </el-row>
     <el-row align="middle" class="unite_name">
       <el-col>
-        <span>{{ state.unites[uniteId].name }}</span>
+        <span>{{ state.unites[uniteId].unite.name }}</span>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="8"> type </el-col>
       <el-col :span="16">
-        {{ state.unites[uniteId].type }}
+        {{ state.unites[uniteId].unite.type }}
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="8"> Influence </el-col>
       <el-col :span="16">
-        {{ state.unites[uniteId].influence }}
+        {{ state.unites[uniteId].unite.influence }}
       </el-col>
     </el-row>
     <el-row align="middle">
@@ -98,7 +98,7 @@ const props = defineProps({
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const img = require("@/assets/unites/" +
-  state.value.unites[props.uniteId].pict);
+  state.value.unites[props.uniteId].unite.pict);
 </script>
 
 <style lang="scss" scoped>

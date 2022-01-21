@@ -1,10 +1,11 @@
 import { Ref, ref } from "vue";
 import { Unite } from "./unites";
 
-interface UnitePersonnage extends Unite {
+interface PersonnageUnite {
   level: number;
   maitrise: "bl" | "elite" | "max" | "auxiliaire";
   drawer: boolean;
+  unite: Unite;
 }
 
 export interface Personnage {
@@ -12,7 +13,7 @@ export interface Personnage {
   influence: number;
   maison: string;
   classe: string;
-  unites: UnitePersonnage[];
+  unites: PersonnageUnite[];
   editMode: boolean;
 }
 
@@ -28,7 +29,7 @@ export const state: Ref<Personnage> = ref({
 export const addUnite = (unite?: Unite): void => {
   if (unite) {
     state.value.unites.push({
-      ...unite,
+      unite,
       level: 1,
       maitrise: "bl",
       drawer: false,
