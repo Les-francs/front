@@ -1,5 +1,11 @@
 import { Ref, ref } from "vue";
+import { Event } from "./events";
 import { Unite } from "./unites";
+
+interface EventPersonnage {
+  event: Event;
+  participation: string;
+}
 
 interface PersonnageUnite {
   level: number;
@@ -14,6 +20,7 @@ export interface Personnage {
   maison: string;
   classe: string;
   unites: PersonnageUnite[];
+  events: EventPersonnage[];
   editMode: boolean;
 }
 
@@ -23,6 +30,7 @@ export const state: Ref<Personnage> = ref({
   maison: "Les francs",
   classe: "longbow",
   unites: [],
+  events: [],
   editMode: false,
 });
 
@@ -33,6 +41,15 @@ export const addUnite = (unite?: Unite): void => {
       level: 1,
       maitrise: "bl",
       drawer: false,
+    });
+  }
+};
+
+export const addEvent = (event?: Event): void => {
+  if (event) {
+    state.value.events.push({
+      event,
+      participation: "ne-sais-pas",
     });
   }
 };

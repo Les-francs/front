@@ -8,7 +8,10 @@
             <button
               @click="personnageState.editMode = !personnageState.editMode"
             >
-              <font-awesome-icon v-if="personnageState.editMode" icon="user-check" />
+              <font-awesome-icon
+                v-if="personnageState.editMode"
+                icon="user-check"
+              />
               <font-awesome-icon v-else icon="user-edit" />
             </button>
           </h2>
@@ -31,8 +34,30 @@
       </el-row>
       <el-scrollbar height="89vh">
         <el-row :gutter="10">
+          <el-col :span="20">
+            <select v-model="eventSelected">
+              <option
+                v-for="(ev, key) in eventsState"
+                :key="key"
+                :value="ev.id"
+              >
+                {{ ev.name }} du {{ ev.dateDebut }} au {{ ev.dateFin }}
+              </option>
+            </select>
+          </el-col>
+          <el-col :span="4">
+            <button
+              @click="
+                addEvent(eventsState.find((val) => val.id == eventSelected))
+              "
+            >
+              <font-awesome-icon icon="plus" />
+            </button>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10">
           <el-col
-            v-for="(event, key) in eventsState"
+            v-for="(event, key) in personnageState.events"
             :key="key"
             :span="24"
             :lg="12"
@@ -50,7 +75,10 @@ import Personnage from "@/components/Personnage.vue";
 import Event from "@/components/Event.vue";
 import Classes from "@/components/Classes.vue";
 import { state as eventsState } from "@/store/events";
-import { state as personnageState } from "@/store/personnage";
+import { addEvent, state as personnageState } from "@/store/personnage";
+import { ref } from "vue";
+
+const eventSelected = ref();
 </script>
 
 <style lang="scss" scoped>
