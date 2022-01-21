@@ -37,7 +37,7 @@
           <el-col :span="20">
             <select v-model="eventSelected">
               <option
-                v-for="(ev, key) in eventsState"
+                v-for="(ev, key) in getAvailableEvents()"
                 :key="key"
                 :value="ev.id"
               >
@@ -75,7 +75,11 @@ import Personnage from "@/components/Personnage.vue";
 import Event from "@/components/Event.vue";
 import Classes from "@/components/Classes.vue";
 import { state as eventsState } from "@/store/events";
-import { addEvent, state as personnageState } from "@/store/personnage";
+import {
+  addEvent,
+  getAvailableEvents,
+  state as personnageState,
+} from "@/store/personnage";
 import { ref } from "vue";
 
 const eventSelected = ref();

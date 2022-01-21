@@ -1,5 +1,5 @@
 import { Ref, ref } from "vue";
-import { Event } from "./events";
+import { Event, state as eventState } from "./events";
 import { Unite } from "./unites";
 
 interface EventPersonnage {
@@ -53,3 +53,10 @@ export const addEvent = (event?: Event): void => {
     });
   }
 };
+
+export const getAvailableEvents = (): Event[] =>
+  eventState.value.filter((val) => {
+    const ids = state.value.events.map((ev) => ev.event.id);
+
+    return ids.indexOf(val.id) === -1;
+  });

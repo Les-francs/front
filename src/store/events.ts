@@ -11,8 +11,8 @@ export interface Event {
 export const state: Ref<Event[]> = ref([
   {
     id: 1,
-    dateDebut: "2022-01-15 19h30",
-    dateFin: "2022-01-16 21h00",
+    dateDebut: "2022-01-15 18h30",
+    dateFin: "2022-01-16 22h00",
     name: "GVG",
     description: "Guerre de maison",
   },
