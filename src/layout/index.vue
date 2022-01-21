@@ -3,9 +3,11 @@
     <Header />
     <el-main>
       <el-scrollbar height="100%">
-        <transition name="fade">
-          <router-view></router-view>
-        </transition>
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </el-scrollbar>
     </el-main>
   </el-container>

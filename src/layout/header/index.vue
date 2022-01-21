@@ -14,6 +14,13 @@
     >
       <router-link to="/caserne"> Caserne </router-link>
     </el-col>
+    <el-col
+      :span="7"
+      :md="4"
+      :style="{ backgroundImage: 'url(' + image + ')' }"
+    >
+      <router-link to="/evenements"> Evenements </router-link>
+    </el-col>
   </el-row>
 </template>
 

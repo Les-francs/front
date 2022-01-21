@@ -29,6 +29,17 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "caserne" */ "../views/Caserne.vue"),
       },
+      {
+        path: "/evenements",
+        name: "Evenements",
+        meta: {
+          title: "Les Francs - Evenements",
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "evenements" */ "../views/Evenements.vue"
+          ),
+      },
     ],
   },
   {
