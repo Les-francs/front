@@ -71,15 +71,15 @@
 </template>
 
 <script lang="ts" setup>
-import Personnage from "@/components/Personnage.vue";
-import Event from "@/components/Event.vue";
-import Classes from "@/components/Classes.vue";
-import { state as eventsState } from "@/store/events";
+import Personnage from "@/components/Home/Personnage.vue";
+import Event from "@/components/Home/Event.vue";
+import Classes from "@/components/Home/Classes.vue";
+import { state as eventsState } from "@/components/Evenements/events";
 import {
   addEvent,
   getAvailableEvents,
   state as personnageState,
-} from "@/store/personnage";
+} from "@/components/Home/personnage";
 import { ref } from "vue";
 
 const eventSelected = ref();

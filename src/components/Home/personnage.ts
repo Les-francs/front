@@ -1,6 +1,6 @@
 import { Ref, ref } from "vue";
-import { Event, state as eventState } from "./events";
-import { Unite } from "./unites";
+import { Event, state as eventState } from "../Evenements/events";
+import { Unite } from "../Caserne/unites";
 
 interface EventPersonnage {
   event: Event;

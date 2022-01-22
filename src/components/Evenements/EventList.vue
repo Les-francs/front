@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import { addEvent, deleteEvent, state } from "@/store/events";
+import { addEvent, deleteEvent, state } from "@/components/Evenements/events";
 </script>
 
 <style lang="scss" scoped>

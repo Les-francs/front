@@ -34,10 +34,13 @@
 </template>
 
 <script lang="ts" setup>
-import Unite from "@/components/Unite.vue";
-import { getUnitesSortedByName, state as uniteState } from "@/store/unites";
-import { state as personnageState } from "@/store/personnage";
-import { addUnite } from "@/store/personnage";
+import Unite from "@/components/Caserne/Unite.vue";
+import {
+  getUnitesSortedByName,
+  state as uniteState,
+} from "@/components/Caserne/unites";
+import { state as personnageState } from "@/components/Home/personnage";
+import { addUnite } from "@/components/Home/personnage";
 import { ref } from "vue";
 
 const selected = ref();

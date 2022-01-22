@@ -83,7 +83,7 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import { state } from "@/store/personnage";
+import { state } from "@/components/Home/personnage";
 import maitrises from "@/enum/maitrises";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

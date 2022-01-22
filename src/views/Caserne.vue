@@ -3,5 +3,5 @@
 </template>
 
 <script lang="ts" setup>
-import Unites from "@/components/Unites.vue";
+import Unites from "@/components/Caserne/Unites.vue";
 </script>

@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/store/personnage";
+import { state } from "@/components/Home/personnage";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/panneau.png");
 </script>

@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import EventList from "@/components/EventList.vue";
-import EventDetail from "@/components/EventDetail.vue";
+import EventList from "@/components/Evenements/EventList.vue";
+import EventDetail from "@/components/Evenements/EventDetail.vue";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/fond-events.png");

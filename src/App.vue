@@ -32,7 +32,7 @@ const image = require("@/assets/wallpaperbetter.com_1920x1200.jpg");
 
 h2 {
   font-family: "Berry_Rotunda";
-  color: rgb(37, 62, 146);
+  color: #401500;
 }
 
 .disabled {

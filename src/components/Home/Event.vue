@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/store/personnage";
+import { state } from "@/components/Home/personnage";
 import { defineProps } from "vue";
 
 const props = defineProps({

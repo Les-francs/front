@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/store/events";
+import { state } from "@/components/Evenements/events";
 import { computed, defineProps } from "vue";
 
 const props = defineProps({
@@ -40,12 +40,6 @@ const event = computed(
 </script>
 
 <style lang="scss" scoped>
-.event {
-  h2 {
-    color: #401500;
-  }
-}
-
 .description,
 .el-radio,
 .el-radio__input.is-checked + .el-radio__label,
