@@ -71,9 +71,9 @@
             </el-row>
           </el-col>
           <el-col :span="1" :offset="15">
-            <el-button type="danger" @click="state.unites.splice(uniteId, 1)">
+            <button @click="state.unites.splice(uniteId, 1)">
               <font-awesome-icon icon="trash" />
-            </el-button>
+            </button>
           </el-col>
         </el-row>
       </div>
@@ -102,6 +102,10 @@ const img = require("@/assets/unites/" +
 </script>
 
 <style lang="scss" scoped>
+button {
+  background-color: rgba(128, 36, 36, 0.658);
+  margin-top: 10px;
+}
 .unite {
   padding: 15px;
   margin-bottom: 20px;

@@ -15,13 +15,12 @@
         >
         </el-option>
       </el-select>
-      <el-button
-        type="primary"
+      <button
         round
         @click="addUnite(uniteState.find((val) => val.id == selected))"
       >
         <font-awesome-icon icon="plus" />
-      </el-button>
+      </button>
     </el-col>
   </el-row>
   <el-row :gutter="10">
@@ -47,7 +46,7 @@ const selected = ref();
 </script>
 
 <style lang="scss" scoped>
-.el-button {
+button {
   margin-left: 20px;
 }
 </style>
