@@ -16,6 +16,8 @@ export const state: Ref<Event[]> = ref([
           influence: 700,
           maison: "Les francs",
           classe: "longbow",
+          events: [],
+          unites: [],
         },
       },
     ],
