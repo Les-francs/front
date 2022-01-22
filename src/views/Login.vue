@@ -18,7 +18,7 @@
           />
         </el-col>
       </el-row>
-      <el-button type="primary" @click="onSubmit">Connexion</el-button>
+      <button @click="onSubmit">Connexion</button>
     </el-col>
   </el-row>
 </template>
@@ -39,6 +39,12 @@ const onSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
+button {
+  width: auto;
+  height: auto;
+  background-color: rgba(100, 60, 28, 0.8);
+  border-radius: 10px;
+}
 .el-row {
   height: 100%;
 }
