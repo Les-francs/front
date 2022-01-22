@@ -39,6 +39,10 @@ const onSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
+input {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
 button {
   width: auto;
   height: auto;
