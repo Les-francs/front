@@ -87,12 +87,6 @@ const eventSelected = ref();
 
 <style lang="scss" scoped>
 button {
-  color: white;
-  background: rgba(100, 60, 28, 0.658);
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
   font-size: 0.6em;
-  cursor: pointer;
 }
 </style>

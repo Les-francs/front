@@ -64,4 +64,16 @@ label {
 ::placeholder {
   color: rgba($color: #ddd, $alpha: 0.6);
 }
+
+button {
+  color: white;
+  background: rgba(100, 60, 28, 0.658);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 0.6em;
+  height: 38px;
+  width: 38px;
+  cursor: pointer;
+}
 </style>
