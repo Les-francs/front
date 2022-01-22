@@ -20,6 +20,28 @@ export const state: Ref<Event[]> = ref([
           unites: [],
         },
       },
+      {
+        participation: "non",
+        personnage: {
+          pseudo: "Test",
+          influence: 700,
+          maison: "Les francs",
+          classe: "longbow",
+          events: [],
+          unites: [],
+        },
+      },
+      {
+        participation: "oui",
+        personnage: {
+          pseudo: "Test 2",
+          influence: 700,
+          maison: "Les francs",
+          classe: "longbow",
+          events: [],
+          unites: [],
+        },
+      },
     ],
   },
   {
