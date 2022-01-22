@@ -1,12 +1,5 @@
+import { Event } from "@/interfaces/Event";
 import { Ref, ref } from "vue";
-
-export interface Event {
-  id: number;
-  name: string;
-  description: string;
-  dateDebut: string;
-  dateFin: string;
-}
 
 export const state: Ref<Event[]> = ref([
   {

@@ -1,28 +1,8 @@
 import { Ref, ref } from "vue";
-import { Event, state as eventState } from "../Evenements/events";
-import { Unite } from "../Caserne/unites";
-
-interface EventPersonnage {
-  event: Event;
-  participation: string;
-}
-
-interface PersonnageUnite {
-  level: number;
-  maitrise: "bl" | "elite" | "max" | "auxiliaire";
-  drawer: boolean;
-  unite: Unite;
-}
-
-export interface Personnage {
-  pseudo: string;
-  influence: number;
-  maison: string;
-  classe: string;
-  unites: PersonnageUnite[];
-  events: EventPersonnage[];
-  editMode: boolean;
-}
+import { state as eventState } from "../Evenements/events";
+import { Personnage } from "@/interfaces/Personnage";
+import { Event } from "@/interfaces/Event";
+import { Unite } from "@/interfaces/Unite";
 
 export const state: Ref<Personnage> = ref({
   pseudo: "Vilsafur",
