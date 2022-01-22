@@ -8,6 +8,17 @@ export const state: Ref<Event[]> = ref([
     dateFin: "2022-01-16 1h30",
     name: "GVG",
     description: "Guerre de maison",
+    personnages: [
+      {
+        participation: "oui",
+        personnage: {
+          pseudo: "Vilsafur",
+          influence: 700,
+          maison: "Les francs",
+          classe: "longbow",
+        },
+      },
+    ],
   },
   {
     id: 2,

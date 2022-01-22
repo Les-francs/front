@@ -2,14 +2,14 @@
   <div class="event" :style="{ backgroundImage: 'url(' + image + ')' }">
     <el-row>
       <el-col>
-        <h2>{{ state.events[props.id!].event.name }}</h2>
+        <h2>{{ state.events[props.id!].event?.name }}</h2>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <p class="date">
-          {{ state.events[props.id!].event.dateDebut }} -
-          {{ state.events[props.id!].event.dateFin }}
+          {{ state.events[props.id!].event?.dateDebut }} -
+          {{ state.events[props.id!].event?.dateFin }}
         </p>
       </el-col>
     </el-row>
@@ -32,7 +32,7 @@
     <el-row>
       <el-col>
         <p class="description">
-          {{ state.events[props.id!].event.description }}
+          {{ state.events[props.id!].event?.description }}
         </p>
       </el-col>
     </el-row>

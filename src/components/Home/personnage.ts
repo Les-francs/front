@@ -36,7 +36,7 @@ export const addEvent = (event?: Event): void => {
 
 export const getAvailableEvents = (): Event[] =>
   eventState.value.filter((val) => {
-    const ids = state.value.events.map((ev) => ev.event.id);
+    const ids = state.value.events.map((ev) => ev.event?.id);
 
     return ids.indexOf(val.id) === -1;
   });

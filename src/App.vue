@@ -14,11 +14,6 @@ const image = require("@/assets/wallpaperbetter.com_1920x1200.jpg");
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "Berry_Rotunda";
-  src: local("Berry_Rotunda"),
-    url("./assets/font/Berry_Rotunda.ttf") format("truetype");
-}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -31,7 +26,6 @@ const image = require("@/assets/wallpaperbetter.com_1920x1200.jpg");
 }
 
 h2 {
-  font-family: "Berry_Rotunda";
   color: #401500;
 }
 

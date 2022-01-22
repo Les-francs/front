@@ -12,11 +12,17 @@ $--font-path: '~element-plus/lib/theme-chalk/fonts';
 @import '~normalize.css';
 @import "~element-plus/packages/theme-chalk/src/index";
 
+@font-face {
+  font-family: "Berry_Rotunda";
+  src: local("Berry_Rotunda"),
+    url("./assets/font/Berry_Rotunda.ttf") format("truetype");
+}
+
 html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Berry_Rotunda";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -26,4 +32,11 @@ html, body {
 #app, .el-container {
     height: 100vh;
     width: 100vw;
+}
+
+.el-radio,
+.el-radio__input.is-checked + .el-radio__label {
+  color: #280d00 !important;
+  font-style: oblique;
+  font-family: "Berry_Rotunda";
 }

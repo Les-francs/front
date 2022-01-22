@@ -1,15 +1,17 @@
 import { Event } from "./Event";
 
-interface EventPersonnage {
-  event: Event;
+export interface EventPersonnage {
+  event?: Event;
+  personnage?: Personnage;
   participation: string;
 }
 
-interface PersonnageUnite {
+export interface PersonnageUnite {
   level: number;
   maitrise: "bl" | "elite" | "max" | "auxiliaire";
   drawer: boolean;
-  unite: Unite;
+  unite?: Unite;
+  personnage?: Personnage;
 }
 
 export interface Personnage {
@@ -19,5 +21,5 @@ export interface Personnage {
   classe: string;
   unites: PersonnageUnite[];
   events: EventPersonnage[];
-  editMode: boolean;
+  editMode?: boolean;
 }
