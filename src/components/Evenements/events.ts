@@ -116,6 +116,8 @@ export const state: Ref<Event[]> = ref([
   },
 ]);
 
+export const eventSelected: Ref<number | undefined> = ref();
+
 export const addEvent = (): void => {
   const id = (state.value[state.value.length - 1].id ?? 0) + 1;
 

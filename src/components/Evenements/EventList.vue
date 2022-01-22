@@ -39,7 +39,7 @@
         <span>{{ event.dateFin }}</span>
       </el-col>
       <el-col :span="4">
-        <button>
+        <button @click="eventSelected = event.id">
           <font-awesome-icon icon="eye" />
         </button>
         <button @click="deleteEvent(event.id)">
@@ -51,7 +51,12 @@
 </template>
 
 <script lang="ts" setup>
-import { addEvent, deleteEvent, state } from "@/components/Evenements/events";
+import {
+  addEvent,
+  deleteEvent,
+  eventSelected,
+  state,
+} from "@/components/Evenements/events";
 </script>
 
 <style lang="scss" scoped>
