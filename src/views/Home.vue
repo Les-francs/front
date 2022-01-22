@@ -29,7 +29,7 @@
     <el-col :span="16">
       <el-row>
         <el-col>
-          <h2>Evenements</h2>
+          <h2>Evenements ({{ getAvailableEvents().length }} en attente)</h2>
         </el-col>
       </el-row>
       <el-scrollbar height="89vh">
