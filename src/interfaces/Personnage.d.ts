@@ -1,12 +1,14 @@
 import { Event } from "./Event";
 
 export interface EventPersonnage {
+  id: number;
   event?: Event;
   personnage?: Personnage;
   participation: string;
 }
 
 export interface PersonnageUnite {
+  id: number;
   level: number;
   maitrise: "bl" | "elite" | "max" | "auxiliaire";
   drawer: boolean;

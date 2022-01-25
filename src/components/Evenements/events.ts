@@ -10,6 +10,7 @@ export const state: Ref<Event[]> = ref([
     description: "Guerre de maison",
     personnages: [
       {
+        id: 1,
         participation: "oui",
         personnage: {
           pseudo: "Vilsafur",
@@ -21,23 +22,25 @@ export const state: Ref<Event[]> = ref([
         },
       },
       {
+        id: 2,
         participation: "non",
         personnage: {
           pseudo: "Test",
           influence: 700,
           maison: "Les francs",
-          classe: "longbow",
+          classe: "maul",
           events: [],
           unites: [],
         },
       },
       {
-        participation: "oui",
+        id: 3,
+        participation: "ne-sais-pas",
         personnage: {
           pseudo: "Test 2",
           influence: 700,
           maison: "Les francs",
-          classe: "longbow",
+          classe: "spear",
           events: [],
           unites: [],
         },
@@ -145,6 +148,8 @@ export const state: Ref<Event[]> = ref([
 ]);
 
 export const eventSelected: Ref<number | undefined> = ref();
+
+export const drawerOpenned: Ref<boolean> = ref(false);
 
 export const addEvent = (): void => {
   const id = (state.value[state.value.length - 1].id ?? 0) + 1;

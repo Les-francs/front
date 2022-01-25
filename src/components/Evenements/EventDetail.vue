@@ -22,7 +22,7 @@
       </p>
     </el-col>
     <el-col>
-      <el-row>
+      <el-row style="margin-top: 20px">
         <el-col>
           <el-radio v-model="presence" :label="true"> Répondu </el-radio>
           <el-radio v-model="presence" :label="false">
@@ -32,11 +32,14 @@
       </el-row>
       <el-row
         v-if="presence && event.personnages && event.personnages.length > 0"
+        style="margin-top: 20px"
       >
         <el-col
           :span="6"
           v-for="(personnage, key) in event.personnages"
           :key="key"
+          @click="openDrawer(personnage)"
+          style="cursor: pointer"
         >
           {{ personnage.personnage?.pseudo }}
           <font-awesome-icon
@@ -58,11 +61,18 @@
       </el-row>
     </el-col>
   </el-row>
+  <DrawerPersonnage v-if="eventPersonnage" :eventPersonnage="eventPersonnage" />
 </template>
 
 <script lang="ts" setup>
-import { eventSelected, state } from "@/components/Evenements/events";
-import { computed, defineProps, ref } from "vue";
+import {
+  drawerOpenned,
+  eventSelected,
+  state,
+} from "@/components/Evenements/events";
+import { EventPersonnage } from "@/interfaces/Personnage";
+import { computed, defineProps, Ref, ref } from "vue";
+import DrawerPersonnage from "./DrawerPersonnage.vue";
 
 const props = defineProps({
   id: {
@@ -70,6 +80,13 @@ const props = defineProps({
     type: Number,
   },
 });
+
+const eventPersonnage: Ref<EventPersonnage | undefined> = ref();
+
+const openDrawer = (id: EventPersonnage): void => {
+  eventPersonnage.value = id;
+  drawerOpenned.value = true;
+};
 
 const presence = ref(true);
 const event = computed(
@@ -79,7 +96,7 @@ const event = computed(
 
 <style lang="scss" scoped>
 .event {
-  margin-top: 2vw;
+  margin-top: 3vw;
   padding: 0 4vw 0 3vw;
 }
 .description,

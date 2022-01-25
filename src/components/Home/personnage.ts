@@ -16,7 +16,9 @@ export const state: Ref<Personnage> = ref({
 
 export const addUnite = (unite?: Unite): void => {
   if (unite) {
+    const id = state.value.unites.length++;
     state.value.unites.push({
+      id,
       unite,
       level: 1,
       maitrise: "bl",
@@ -27,7 +29,9 @@ export const addUnite = (unite?: Unite): void => {
 
 export const addEvent = (event?: Event): void => {
   if (event) {
+    const id = state.value.events.length++;
     state.value.events.push({
+      id,
       event,
       participation: "ne-sais-pas",
     });
