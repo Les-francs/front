@@ -14,7 +14,6 @@ const image = require("@/assets/wallpaperbetter.com_1920x1200.jpg");
 </script>
 
 <style lang="scss">
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

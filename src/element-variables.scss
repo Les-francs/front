@@ -10,7 +10,7 @@ $--color-primary: #401500;
 /* icon font path, required */
 $--font-path: '~element-plus/lib/theme-chalk/fonts';
 @import '~normalize.css';
-@import "~element-plus/packages/theme-chalk/src/index";
+@import "~element-plus/theme-chalk/src/index";
 
 @font-face {
   font-family: "Berry_Rotunda";

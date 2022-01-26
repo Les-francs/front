@@ -1,11 +1,15 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client/core";
 import { setContext } from "@apollo/client/link/context";
 import jwt from "jsonwebtoken";
 
 export const AUTH_KEY = "les-francs-token";
 
 const httpLink = createHttpLink({
-  uri: process.env.VUE_URL_BACKEND + "/api/graphql",
+  uri: process.env.VUE_APP_URL_BACKEND + "/api/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
