@@ -18,7 +18,7 @@ export interface User {
   authenticationError?: string;
 }
 export const state: Ref<User> = ref({
-  authenticated: token !== undefined,
+  authenticated: token !== undefined && token !== null,
 });
 
 export const checkLogin = (body: {
