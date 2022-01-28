@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { state } from "@/store/user";
+import { getToken, state } from "@/store/app";
 import Layout from "@/layout/index.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
@@ -72,6 +72,8 @@ router.beforeEach(function (to, from, next) {
   } else if (previousNearestWithMeta) {
     document.title = previousNearestWithMeta.meta.title as string;
   }
+
+  getToken();
 
   if (
     to.path !== "/login" &&
