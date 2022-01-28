@@ -4,21 +4,46 @@ import { ElMessage } from "element-plus";
 import { Ref, ref } from "vue";
 import jwt from "jsonwebtoken";
 
-const token = window.localStorage.getItem(AUTH_KEY);
+export const getToken = (): string | null => {
+  let token = window.localStorage.getItem(AUTH_KEY);
+
+  if (token) {
+    const decodedToken = jwt.decode(token, { json: true });
+    console.log("decodedToken: ", decodedToken);
+    if (
+      !decodedToken ||
+      (decodedToken.exp ?? 0) * 1000 < new Date().getTime()
+    ) {
+      window.localStorage.removeItem(AUTH_KEY);
+      state.value.authenticated = false;
+      token = null;
+    }
+  }
+
+  return token;
+};
+
+let username;
+const token = getToken();
 
 if (token) {
   const decodedToken = jwt.decode(token, { json: true });
-  if (!decodedToken || (decodedToken.exp ?? 0) * 1000 < new Date().getTime()) {
-    window.localStorage.removeItem(AUTH_KEY);
+  if (decodedToken) {
+    username = decodedToken["username"];
   }
 }
 
-export interface User {
+export interface App {
   authenticated: boolean;
   authenticationError?: string;
+  username?: string;
+  editMode: boolean;
 }
-export const state: Ref<User> = ref({
+
+export const state: Ref<App> = ref({
   authenticated: token !== undefined && token !== null,
+  editMode: false,
+  username,
 });
 
 export const checkLogin = (body: {

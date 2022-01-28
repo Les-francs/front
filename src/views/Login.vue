@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { checkLogin } from "@/store/user";
+import { checkLogin } from "@/store/app";
 import { reactive } from "vue";
 
 // do not use same name with ref

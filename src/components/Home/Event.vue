@@ -1,28 +1,38 @@
 <template>
-  <div class="event" :style="{ backgroundImage: 'url(' + image + ')' }">
+  <div
+    v-if="perso"
+    class="event"
+    :style="{ backgroundImage: 'url(' + image + ')' }"
+  >
     <el-row>
       <el-col>
-        <h2>{{ state.events[props.id!].event?.name }}</h2>
+        <h2>{{ perso.eventUsers.edges[props.id!].node.event?.name }}</h2>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <p class="date">
-          {{ state.events[props.id!].event?.dateDebut }} -
-          {{ state.events[props.id!].event?.dateFin }}
+          {{ perso.eventUsers.edges[props.id!].node.event?.dateDebut }} -
+          {{ perso.eventUsers.edges[props.id!].node.event?.dateFin }}
         </p>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
-        <el-radio v-model="state.events[props.id!].participation" label="oui">
+        <el-radio
+          v-model="perso.eventUsers.edges[props.id!].node.participation"
+          label="oui"
+        >
           Oui
         </el-radio>
-        <el-radio v-model="state.events[props.id!].participation" label="non">
+        <el-radio
+          v-model="perso.eventUsers.edges[props.id!].node.participation"
+          label="non"
+        >
           Non
         </el-radio>
         <el-radio
-          v-model="state.events[props.id!].participation"
+          v-model="perso.eventUsers.edges[props.id!].node.participation"
           label="ne-sais-pas"
         >
           Ne sais pas
@@ -32,7 +42,7 @@
     <el-row>
       <el-col>
         <p class="description">
-          {{ state.events[props.id!].event?.description }}
+          {{ perso.eventUsers.edges[props.id!].node.event?.description }}
         </p>
       </el-col>
     </el-row>
@@ -40,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/components/Home/personnage";
+import { perso } from "@/store/personnage";
 import { defineProps } from "vue";
 
 const props = defineProps({

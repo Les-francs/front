@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" mode="out-in">
+  <transition name="fade" mode="out-in" v-if="perso">
     <el-row v-if="state.editMode" class="editPersonnage">
       <el-col>
         <el-row align="middle">
@@ -7,7 +7,7 @@
             <label>Pseudo :</label>
           </el-col>
           <el-col :span="20">
-            <input type="text" v-model="state.pseudo" />
+            <input type="text" v-model="updatedData.username" />
           </el-col>
         </el-row>
       </el-col>
@@ -17,7 +17,9 @@
             <label>Maison :</label>
           </el-col>
           <el-col :span="20">
-            <input type="text" v-model="state.maison" />
+            <select type="text" v-model="updatedData.house">
+              <option value="/api/houses/1">{{ perso.house?.name }}</option>
+            </select>
           </el-col>
         </el-row>
       </el-col>
@@ -27,7 +29,7 @@
             <label>Influence :</label>
           </el-col>
           <el-col :span="20">
-            <input type="number" v-model="state.influence" />
+            <input type="number" v-model="updatedData.influence" />
           </el-col>
         </el-row>
       </el-col>
@@ -40,19 +42,19 @@
         >
           <el-row>
             <el-col>
-              {{ state.pseudo }}
+              {{ perso.username }}
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="12"> Influence : </el-col>
             <el-col :span="12">
-              {{ state.influence }}
+              {{ perso.influence }}
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="12"> Maison : </el-col>
             <el-col :span="12">
-              {{ state.maison }}
+              {{ perso.house?.name }}
             </el-col>
           </el-row>
         </div>
@@ -62,7 +64,8 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/components/Home/personnage";
+import { perso, updatedData } from "@/store/personnage";
+import { state } from "@/store/app";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/panneau.png");
 </script>

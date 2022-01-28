@@ -15,17 +15,18 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   const token = window.localStorage.getItem(AUTH_KEY);
 
-  if (token) {
-    const decodedToken = jwt.decode(token, { json: true });
-    if (
-      !decodedToken ||
-      (decodedToken.exp ?? 0) * 1000 < new Date().getTime()
-    ) {
-      window.localStorage.removeItem(AUTH_KEY);
-      return;
-    }
+  if (!token) {
+    console.log("pas de token", token);
+    return;
   }
 
+  const decodedToken = jwt.decode(token, { json: true });
+  if (!decodedToken || (decodedToken.exp ?? 0) * 1000 < new Date().getTime()) {
+    window.localStorage.removeItem(AUTH_KEY);
+    return;
+  }
+
+  console.log("token: ", token);
   return {
     headers: {
       ...headers,

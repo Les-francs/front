@@ -1,27 +1,38 @@
 import { Event } from "./Event";
+import { Collection } from "./GraphQL";
 
-export interface EventPersonnage {
+export interface EventUser {
   id: number;
   event?: Event;
-  personnage?: Personnage;
+  user?: User;
   participation: string;
 }
 
-export interface PersonnageUnite {
+export interface UniteUser {
   id: number;
   level: number;
-  maitrise: "bl" | "elite" | "max" | "auxiliaire";
+  maitrise: "bas level" | "élite" | "max" | "auxiliaire";
   drawer: boolean;
   unite?: Unite;
   personnage?: Personnage;
 }
 
-export interface Personnage {
-  pseudo: string;
+interface Weapon {
+  name: string;
+  id: string;
+}
+
+interface House {
+  name: string;
+  id: string;
+}
+
+export interface User {
+  id: string;
+  username: string;
   influence: number;
-  maison: string;
-  classe: string;
-  unites: PersonnageUnite[];
-  events: EventPersonnage[];
-  editMode?: boolean;
+  weapon: Weapon;
+  house?: House;
+  unitUsers: Collection<UniteUser>;
+  eventUsers: Collection<EventUser>;
 }

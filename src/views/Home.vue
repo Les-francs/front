@@ -1,17 +1,12 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="8">
+    <el-col :span="8" v-if="perso">
       <el-row>
         <el-col>
           <h2>
             Personnage
-            <button
-              @click="personnageState.editMode = !personnageState.editMode"
-            >
-              <font-awesome-icon
-                v-if="personnageState.editMode"
-                icon="user-check"
-              />
+            <button @click="updateUser()">
+              <font-awesome-icon v-if="appState.editMode" icon="user-check" />
               <font-awesome-icon v-else icon="user-edit" />
             </button>
           </h2>
@@ -55,16 +50,6 @@
             </button>
           </el-col>
         </el-row>
-        <el-row :gutter="10">
-          <el-col
-            v-for="(event, key) in personnageState.events"
-            :key="key"
-            :span="24"
-            :lg="12"
-          >
-            <Event :id="key" />
-          </el-col>
-        </el-row>
       </el-scrollbar>
     </el-col>
   </el-row>
@@ -75,14 +60,21 @@ import Personnage from "@/components/Home/Personnage.vue";
 import Event from "@/components/Home/Event.vue";
 import Classes from "@/components/Home/Classes.vue";
 import { state as eventsState } from "@/components/Evenements/events";
+import { state as appState } from "@/store/app";
 import {
   addEvent,
   getAvailableEvents,
-  state as personnageState,
-} from "@/components/Home/personnage";
+  perso,
+  updatePerso,
+} from "@/store/personnage";
 import { ref } from "vue";
 
 const eventSelected = ref();
+
+const updateUser = () => {
+  updatePerso();
+  appState.value.editMode = !appState.value.editMode;
+};
 </script>
 
 <style lang="scss" scoped>

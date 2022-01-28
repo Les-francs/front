@@ -1,11 +1,11 @@
 <template>
   <transition name="fade" mode="out-in">
     <el-row v-if="state.editMode" class="editClasse">
-      <el-col :span="6" v-for="(url, name) in classes" :key="name">
+      <el-col :span="6" v-for="{ url, name } in classes" :key="name">
         <el-image
-          :class="name != state.classe ? 'disabled' : ''"
+          :class="name != perso?.weapon.name ? 'disabled' : ''"
           :src="url"
-          @click="state.classe = name"
+          @click="updatedData.weapon = name"
           fit="contain"
         ></el-image>
       </el-col>
@@ -21,30 +21,26 @@
 </template>
 
 <script lang="ts" setup>
-import { state } from "@/components/Home/personnage";
+import { perso, updatedData } from "@/store/personnage";
+import { state } from "@/store/app";
+import { weapons } from "@/store/weapons";
 import { computed } from "vue";
 
 const src = computed(() =>
-  require("@/assets/classes/" + state.value.classe + "/model.png")
+  perso.value
+    ? require("@/assets/classes/" + perso.value?.weapon.name + "/model.png")
+    : ""
 );
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/fond-classe.jpg");
 
-const classes = {
-  broadswordshield: require("@/assets/classes/broadswordshield/icon.png"),
-  crescentblade: require("@/assets/classes/crescentblade/icon.png"),
-  dualblade: require("@/assets/classes/dualblade/icon.png"),
-  longbow: require("@/assets/classes/longbow/icon.png"),
-  maul: require("@/assets/classes/maul/icon.png"),
-  musket: require("@/assets/classes/musket/icon.png"),
-  nodachi: require("@/assets/classes/nodachi/icon.png"),
-  pike: require("@/assets/classes/pike/icon.png"),
-  poleaxe: require("@/assets/classes/poleaxe/icon.png"),
-  shortbow: require("@/assets/classes/shortbow/icon.png"),
-  spear: require("@/assets/classes/spear/icon.png"),
-  swordshield: require("@/assets/classes/swordshield/icon.png"),
-};
+const classes = computed(() =>
+  weapons.value?.edges.map((weapon) => ({
+    name: weapon.node.name,
+    url: require(`@/assets/classes/${weapon.node.name}/icon.png`),
+  }))
+);
 </script>
 
 <style lang="scss" scoped>

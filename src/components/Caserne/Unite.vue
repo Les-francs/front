@@ -1,8 +1,8 @@
 <template>
   <div
     class="unite"
-    :class="state.unites[uniteId].unite.rarity"
-    @click="state.unites[uniteId].drawer = true"
+    :class="perso.unites[uniteId].unite.rarity"
+    @click="perso.unites[uniteId].drawer = true"
   >
     <el-row>
       <el-col class="container-image">
@@ -11,30 +11,30 @@
     </el-row>
     <el-row align="middle" class="unite_name">
       <el-col>
-        <span>{{ state.unites[uniteId].unite.name }}</span>
+        <span>{{ perso.unites[uniteId].unite.name }}</span>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="8"> type </el-col>
       <el-col :span="16">
-        {{ state.unites[uniteId].unite.type }}
+        {{ perso.unites[uniteId].unite.type }}
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="8"> Influence </el-col>
       <el-col :span="16">
-        {{ state.unites[uniteId].unite.influence }}
+        {{ perso.unites[uniteId].unite.influence }}
       </el-col>
     </el-row>
     <el-row align="middle">
       <el-col :span="8"> Maitrise </el-col>
       <el-col :span="16">
-        {{ maitrises[state.unites[uniteId].maitrise] }}
+        {{ maitrises[perso.unites[uniteId].maitrise] }}
       </el-col>
     </el-row>
   </div>
   <el-drawer
-    v-model="state.unites[uniteId].drawer"
+    v-model="perso.unites[uniteId].drawer"
     direction="btt"
     :with-header="false"
     size="300px"
@@ -50,7 +50,7 @@
               <el-col>
                 <label>Maitrise</label>
                 <select
-                  v-model="state.unites[uniteId].maitrise"
+                  v-model="perso.unites[uniteId].maitrise"
                   name="maitrise"
                 >
                   <option
@@ -63,7 +63,7 @@
                 </select>
                 <label>Niveau</label>
                 <input
-                  v-model="state.unites[uniteId].level"
+                  v-model="perso.unites[uniteId].level"
                   placeholder="Niveau..."
                   type="number"
                 />
@@ -71,7 +71,7 @@
             </el-row>
           </el-col>
           <el-col :span="1" :offset="15">
-            <button @click="state.unites.splice(uniteId, 1)">
+            <button @click="perso.unites.splice(uniteId, 1)">
               <font-awesome-icon icon="trash" />
             </button>
           </el-col>
@@ -83,7 +83,7 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import { state } from "@/components/Home/personnage";
+import { perso } from "@/store/personnage";
 import maitrises from "@/enum/maitrises";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -98,7 +98,7 @@ const props = defineProps({
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const img = require("@/assets/unites/" +
-  state.value.unites[props.uniteId].unite.pict);
+  perso.value.unites[props.uniteId].unite.pict);
 </script>
 
 <style lang="scss" scoped>
