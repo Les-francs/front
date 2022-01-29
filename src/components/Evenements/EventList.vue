@@ -24,25 +24,25 @@
         <h2>Actions</h2>
       </el-col>
     </el-row>
-    <el-row v-for="event in state" :key="event.id" align="middle">
+    <el-row v-for="event in events?.edges" :key="event.node.id" align="middle">
       <el-col :span="5">
-        <span>{{ event.name }}</span>
+        <span>{{ event.node.name }}</span>
         <!-- <input type="text"> -->
       </el-col>
       <el-col :span="5">
-        <span>{{ event.description }}</span>
+        <span>{{ event.node.description }}</span>
       </el-col>
       <el-col :span="5">
-        <span>{{ event.dateDebut }}</span>
+        <span>{{ event.node.startAt }}</span>
       </el-col>
       <el-col :span="5">
-        <span>{{ event.dateFin }}</span>
+        <span>{{ event.node.endAt }}</span>
       </el-col>
       <el-col :span="4">
-        <button @click="eventSelected = event.id">
+        <button @click="eventSelected = event.node.id">
           <font-awesome-icon icon="eye" />
         </button>
-        <button @click="deleteEvent(event.id)">
+        <button @click="deleteEvent(event.node.id)">
           <font-awesome-icon icon="trash" />
         </button>
       </el-col>
@@ -51,12 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  addEvent,
-  deleteEvent,
-  eventSelected,
-  state,
-} from "@/components/Evenements/events";
+import { addEvent, deleteEvent, eventSelected, events } from "@/store/events";
 </script>
 
 <style lang="scss" scoped>

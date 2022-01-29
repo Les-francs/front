@@ -2,14 +2,14 @@ import { Event } from "./Event";
 import { Collection } from "./GraphQL";
 
 export interface EventUser {
-  id: number;
+  id: string;
   event?: Event;
   user?: User;
   participation: string;
 }
 
 export interface UniteUser {
-  id: number;
+  id: string;
   level: number;
   maitrise: "bas level" | "élite" | "max" | "auxiliaire";
   drawer: boolean;

@@ -1,4 +1,4 @@
-import { state as eventState } from "../components/Evenements/events";
+import { events } from "./events";
 import { User } from "@/interfaces/Personnage";
 import { Event } from "@/interfaces/Event";
 import { Unite } from "@/interfaces/Unite";
@@ -12,6 +12,7 @@ import {
   provideApolloClient,
 } from "@vue/apollo-composable";
 import { reactive, watch } from "vue";
+import { Edge } from "@/interfaces/GraphQL";
 
 provideApolloClient(client);
 
@@ -31,7 +32,9 @@ const GET_PERSO = gql`
       unitUsers {
         edges {
           node {
+            id
             unit {
+              id
               name
               influence
               typeUnit {
@@ -48,8 +51,10 @@ const GET_PERSO = gql`
       eventUsers {
         edges {
           node {
+            id
             participation
             event {
+              id
               name
               description
               startAt
@@ -66,7 +71,7 @@ interface Result {
   user: User;
 }
 
-const { result } = useQuery<Result>(GET_PERSO, {
+const { result, refetch } = useQuery<Result>(GET_PERSO, {
   id: "/api/users/" + state.value.username,
 });
 
@@ -152,11 +157,20 @@ export const addUnite = (unite?: Unite): void => {
     },
   };
 
-  useMutation(ADD_UNIT, { variables });
+  const { mutate } = useMutation(ADD_UNIT, { variables });
+  mutate().then(() => refetch());
 };
 
-export const addEvent = (event?: Event): void => {
+export const addEvent = (event?: Edge<Event>): void => {
   if (!event || !perso.value) {
+    return;
+  }
+
+  if (
+    perso.value.eventUsers.edges.find(
+      (val) => val.node.event?.id === event.node.id
+    )
+  ) {
     return;
   }
 
@@ -173,21 +187,22 @@ export const addEvent = (event?: Event): void => {
   const variables = {
     input: {
       user: perso.value.id,
-      event: event.id,
+      event: event.node.id,
     },
   };
 
-  useMutation(ADD_EVENT, { variables });
+  const { mutate } = useMutation(ADD_EVENT, { variables });
+  mutate().then(() => refetch());
 };
 
-export const getAvailableEvents = (): Event[] => {
-  if (!perso.value) {
+export const getAvailableEvents = (): Edge<Event>[] => {
+  if (!events.value || !perso.value) {
     return [];
   }
 
-  return eventState.value.filter((val) => {
+  return events.value.edges.slice().filter((val) => {
     const ids = perso.value?.eventUsers.edges.map((ev) => ev.node.event?.id);
 
-    return ids ? ids.indexOf(val.id) === -1 : true;
+    return ids ? ids.indexOf(val.node.id) === -1 : true;
   });
 };

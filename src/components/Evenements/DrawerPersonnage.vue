@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import { computed, defineProps } from "vue";
-import { drawerOpenned } from "./events";
+import { drawerOpenned } from "../../store/events";
 
 const props = defineProps({
   eventPersonnage: {

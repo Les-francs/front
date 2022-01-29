@@ -29,25 +29,31 @@
       </el-row>
       <el-scrollbar height="89vh">
         <el-row :gutter="10">
-          <el-col :span="20">
+          <el-col :span="24">
             <select v-model="eventSelected">
               <option
-                v-for="(ev, key) in getAvailableEvents()"
+                v-for="(ev, key) in events?.edges"
                 :key="key"
-                :value="ev.id"
+                :value="ev.node.id"
               >
-                {{ ev.name }} du {{ ev.dateDebut }} au {{ ev.dateFin }}
+                {{ ev.node.name }} du {{ dateToString(ev.node.startAt) }} au
+                {{ dateToString(ev.node.endAt) }}
+                <template
+                  v-if="
+                    perso?.eventUsers.edges.find(
+                      (val) => val.node.event?.id === ev.node.id
+                    ) === undefined
+                  "
+                >
+                  ( Non répondu )
+                </template>
               </option>
             </select>
           </el-col>
-          <el-col :span="4">
-            <button
-              @click="
-                addEvent(eventsState.find((val) => val.id == eventSelected))
-              "
-            >
-              <font-awesome-icon icon="plus" />
-            </button>
+        </el-row>
+        <el-row v-if="eventSelected">
+          <el-col>
+            <Event :id="eventSelected" />
           </el-col>
         </el-row>
       </el-scrollbar>
@@ -57,19 +63,12 @@
 
 <script lang="ts" setup>
 import Personnage from "@/components/Home/Personnage.vue";
-import Event from "@/components/Home/Event.vue";
 import Classes from "@/components/Home/Classes.vue";
-import { state as eventsState } from "@/components/Evenements/events";
 import { state as appState } from "@/store/app";
-import {
-  addEvent,
-  getAvailableEvents,
-  perso,
-  updatePerso,
-} from "@/store/personnage";
-import { ref } from "vue";
-
-const eventSelected = ref();
+import { dateToString } from "@/utils/string";
+import { getAvailableEvents, perso, updatePerso } from "@/store/personnage";
+import { eventSelected, events } from "@/store/events";
+import Event from "@/components/Home/Event.vue";
 
 const updateUser = () => {
   updatePerso();

@@ -1,38 +1,38 @@
 <template>
   <div
-    v-if="perso"
+    v-if="event"
     class="event"
     :style="{ backgroundImage: 'url(' + image + ')' }"
   >
     <el-row>
       <el-col>
-        <h2>{{ perso.eventUsers.edges[props.id!].node.event?.name }}</h2>
+        <h2>{{ event.node.event?.name }}</h2>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <p class="date">
-          {{ perso.eventUsers.edges[props.id!].node.event?.dateDebut }} -
-          {{ perso.eventUsers.edges[props.id!].node.event?.dateFin }}
+          {{ event.node.event?.startAt }} -
+          {{ event.node.event?.endAt }}
         </p>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <el-radio
-          v-model="perso.eventUsers.edges[props.id!].node.participation"
+          v-model="event.node.participation"
           label="oui"
         >
           Oui
         </el-radio>
         <el-radio
-          v-model="perso.eventUsers.edges[props.id!].node.participation"
+          v-model="event.node.participation"
           label="non"
         >
           Non
         </el-radio>
         <el-radio
-          v-model="perso.eventUsers.edges[props.id!].node.participation"
+          v-model="event.node.participation"
           label="ne-sais-pas"
         >
           Ne sais pas
@@ -42,23 +42,36 @@
     <el-row>
       <el-col>
         <p class="description">
-          {{ perso.eventUsers.edges[props.id!].node.event?.description }}
+          {{ event.node.event?.description }}
         </p>
       </el-col>
     </el-row>
+  </div>
+  <div v-else>
+    Pas d'evenement trouvé
   </div>
 </template>
 
 <script lang="ts" setup>
 import { perso } from "@/store/personnage";
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 
 const props = defineProps({
   id: {
     require: true,
-    type: Number,
+    type: String,
   },
 });
+
+const event = computed(() =>
+  perso.value?.eventUsers.edges.find((val) => val.node.event?.id === props.id)
+);
+
+console.log(
+  perso.value?.eventUsers.edges.find((val) => val.node.event?.id === props.id),
+  props.id,
+  perso.value?.eventUsers.edges
+);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/fond-event.png");

@@ -15,7 +15,6 @@ export const getToken = (): string | null => {
       (decodedToken.exp ?? 0) * 1000 < new Date().getTime()
     ) {
       window.localStorage.removeItem(AUTH_KEY);
-      state.value.authenticated = false;
       token = null;
     }
   }

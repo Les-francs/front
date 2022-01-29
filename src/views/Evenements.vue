@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import EventList from "@/components/Evenements/EventList.vue";
 import EventDetail from "@/components/Evenements/EventDetail.vue";
-import { eventSelected } from "@/components/Evenements/events";
+import { eventSelected } from "@/store/events";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/fond-events.png");

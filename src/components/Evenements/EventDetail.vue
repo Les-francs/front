@@ -8,17 +8,17 @@
   </el-row>
   <el-row class="event">
     <el-col>
-      <h2>{{ event.name }}</h2>
+      <h2>{{ event?.node.name }}</h2>
     </el-col>
     <el-col :span="16">
       <p class="description">
-        {{ event.description }}
+        {{ event?.node.description }}
       </p>
     </el-col>
     <el-col :span="8">
       <p class="date">
-        {{ event.dateDebut }} -
-        {{ event.dateFin }}
+        {{ event?.node.startAt }} -
+        {{ event?.node.endAt }}
       </p>
     </el-col>
     <el-col>
@@ -31,12 +31,16 @@
         </el-col>
       </el-row>
       <el-row
-        v-if="presence && event.personnages && event.personnages.length > 0"
+        v-if="
+          presence &&
+          event?.node.eventUsers &&
+          event?.node.eventUsers.length > 0
+        "
         style="margin-top: 20px"
       >
         <el-col
           :span="6"
-          v-for="(personnage, key) in event.personnages"
+          v-for="(personnage, key) in event?.node.eventUsers"
           :key="key"
           @click="openDrawer(personnage)"
           style="cursor: pointer"
@@ -65,32 +69,28 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  drawerOpenned,
-  eventSelected,
-  state,
-} from "@/components/Evenements/events";
-import { EventPersonnage } from "@/interfaces/Personnage";
+import { drawerOpenned, eventSelected, events } from "@/store/events";
+import { EventUser } from "@/interfaces/Personnage";
 import { computed, defineProps, Ref, ref } from "vue";
 import DrawerPersonnage from "./DrawerPersonnage.vue";
 
 const props = defineProps({
   id: {
     require: true,
-    type: Number,
+    type: String,
   },
 });
 
-const eventPersonnage: Ref<EventPersonnage | undefined> = ref();
+const eventPersonnage: Ref<EventUser | undefined> = ref();
 
-const openDrawer = (id: EventPersonnage): void => {
+const openDrawer = (id: EventUser): void => {
   eventPersonnage.value = id;
   drawerOpenned.value = true;
 };
 
 const presence = ref(true);
 const event = computed(
-  () => state.value.filter((val) => val.id === props.id)[0]
+  () => events.value?.edges.slice().filter((val) => val.node.id === props.id)[0]
 );
 </script>
 

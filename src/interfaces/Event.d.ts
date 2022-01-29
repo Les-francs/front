@@ -1,10 +1,10 @@
 import { EventPersonnage } from "./Personnage";
 
 export interface Event {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  dateDebut: string;
-  dateFin: string;
-  personnages?: EventPersonnage[];
+  startAt: string;
+  endAt: string;
+  eventUsers?: EventPersonnage[];
 }
