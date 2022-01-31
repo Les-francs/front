@@ -67,12 +67,6 @@ const event = computed(() =>
   perso.value?.eventUsers.edges.find((val) => val.node.event?.id === props.id)
 );
 
-console.log(
-  perso.value?.eventUsers.edges.find((val) => val.node.event?.id === props.id),
-  props.id,
-  perso.value?.eventUsers.edges
-);
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image = require("@/assets/fond-event.png");
 </script>

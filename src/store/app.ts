@@ -1,87 +1,62 @@
-import router from "@/router";
-import { AUTH_KEY } from "@/utils/apolloClient";
-import { ElMessage } from "element-plus";
 import { Ref, ref } from "vue";
-import jwt from "jsonwebtoken";
+import { RouteLocationNormalized } from "vue-router";
 
-export const getToken = (): string | null => {
-  let token = window.localStorage.getItem(AUTH_KEY);
+export const AUTH_KEY = "les-francs-token";
+export const AUTH_TYPE = "les-francs-type-auth";
 
-  if (token) {
-    const decodedToken = jwt.decode(token, { json: true });
-    console.log("decodedToken: ", decodedToken);
-    if (
-      !decodedToken ||
-      (decodedToken.exp ?? 0) * 1000 < new Date().getTime()
-    ) {
-      window.localStorage.removeItem(AUTH_KEY);
-      token = null;
-    }
+export const getToken = async (
+  to?: RouteLocationNormalized
+): Promise<string | null> => {
+  const token = window.localStorage.getItem(AUTH_KEY);
+  if (token || !to?.query.code) {
+    return token;
   }
 
-  return token;
+  let body: Array<string> | string = [];
+  const details: { [label: string]: string } = {
+    client_id: process.env.VUE_APP_DISCORD_CLIENT_ID,
+    client_secret: process.env.VUE_APP_DISCORD_CLIENT_SECRET,
+    grant_type: "authorization_code",
+    code: to.query.code as string,
+    redirect_uri: "http://localhost:8081/",
+  };
+
+  for (const property in details) {
+    const encodedKey = encodeURIComponent(property);
+    const encodedValue = encodeURIComponent(details[property]);
+    body.push(encodedKey + "=" + encodedValue);
+  }
+  body = body.join("&");
+
+  const json = await fetch("https://discord.com/api/v8/oauth2/token", {
+    method: "POST",
+    body,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  }).then((response) => response.json());
+
+  if (json.error) {
+    console.error(json);
+    return null;
+  }
+
+  window.localStorage.setItem(AUTH_KEY, json.access_token);
+  window.localStorage.setItem(AUTH_TYPE, json.token_type);
+
+  return json.access_token;
 };
-
-let username;
-const token = getToken();
-
-if (token) {
-  const decodedToken = jwt.decode(token, { json: true });
-  if (decodedToken) {
-    username = decodedToken["username"];
-  }
-}
 
 export interface App {
   authenticated: boolean;
   authenticationError?: string;
   username?: string;
+  email?: string;
+  discord?: string;
   editMode: boolean;
 }
 
 export const state: Ref<App> = ref({
-  authenticated: token !== undefined && token !== null,
+  authenticated: false,
   editMode: false,
-  username,
 });
-
-export const checkLogin = (body: {
-  username: string;
-  password: string;
-}): void => {
-  console.log(process.env.VUE_APP_URL_BACKEND);
-
-  fetch(process.env.VUE_APP_URL_BACKEND + "/authentication_token", {
-    body: JSON.stringify(body),
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-type": "application/json",
-    },
-  })
-    .then(async (value) => {
-      if (value.status == 200) {
-        const token = await value.json().then((value) => value.token);
-        window.localStorage.setItem(AUTH_KEY, token);
-        state.value.authenticated = true;
-
-        router.push("/");
-      } else if (value.status == 401) {
-        ElMessage({
-          message: "Identifiant ou mot de passe incorrect",
-          type: "error",
-        });
-      } else {
-        ElMessage({
-          message: "Erreur de communication avec le serveur",
-          type: "error",
-        });
-      }
-    })
-    .catch((reason) => {
-      ElMessage({
-        message: reason,
-        type: "error",
-      });
-    });
-};

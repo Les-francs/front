@@ -11,7 +11,7 @@ import {
   useResult,
   provideApolloClient,
 } from "@vue/apollo-composable";
-import { reactive, watch } from "vue";
+import { computed, reactive, watch } from "vue";
 import { Edge } from "@/interfaces/GraphQL";
 
 provideApolloClient(client);
@@ -72,7 +72,7 @@ interface Result {
 }
 
 const { result, refetch } = useQuery<Result>(GET_PERSO, {
-  id: "/api/users/" + state.value.username,
+  id: computed(() => "/api/users/" + state.value.discord),
 });
 
 export const perso = useResult(result);
@@ -127,8 +127,6 @@ export const updatePerso = (): void => {
       weapon: updatedData.weapon,
     },
   };
-
-  console.log("Update user");
 
   mutate(variables);
 };

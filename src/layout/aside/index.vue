@@ -4,8 +4,6 @@
       default-active="2"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
-      @open="handleOpen"
-      @close="handleClose"
     >
       <el-submenu index="1">
         <template #title>
@@ -47,16 +45,8 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   setup() {
     const isCollapse = ref(false);
-    const handleOpen = (key: string, keyPath: string) => {
-      console.log(key, keyPath);
-    };
-    const handleClose = (key: string, keyPath: string) => {
-      console.log(key, keyPath);
-    };
     return {
       isCollapse,
-      handleOpen,
-      handleClose,
     };
   },
 });

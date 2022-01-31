@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { getToken, state } from "@/store/app";
+import { AUTH_KEY, getToken, state } from "@/store/app";
 import Layout from "@/layout/index.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
+import { AUTH_TYPE } from "@/store/app";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -57,7 +58,9 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(function (to, from, next) {
+router.beforeEach(async function (to, from, next) {
+  const token = await getToken(to);
+
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
@@ -73,7 +76,32 @@ router.beforeEach(function (to, from, next) {
     document.title = previousNearestWithMeta.meta.title as string;
   }
 
-  getToken();
+  if (token !== "") {
+    const tokenType = window.localStorage.getItem(AUTH_TYPE);
+
+    await fetch("https://discord.com/api/users/@me", {
+      headers: {
+        authorization: `${tokenType} ${token}`,
+      },
+    })
+      .then((result) => result.json())
+      .then((response) => {
+        if (!(response.message && response.message === "401: Unauthorized")) {
+          const { username, email, id } = response;
+          state.value.authenticated = true;
+          state.value.username = username;
+          state.value.discord = id;
+          state.value.email = email;
+        }
+      })
+      .catch((reason) => {
+        console.error(reason);
+        state.value.authenticated = false;
+
+        window.localStorage.removeItem(AUTH_KEY);
+        window.localStorage.removeItem(AUTH_TYPE);
+      });
+  }
 
   if (
     to.path !== "/login" &&

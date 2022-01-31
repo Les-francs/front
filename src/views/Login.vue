@@ -1,41 +1,20 @@
 <template>
   <el-row justify="center" align="middle">
     <el-col :span="6">
-      <el-row>
-        <el-col>
-          <input
-            @keypress.enter="onSubmit"
-            v-model="form.name"
-            placeholder="Identifiant..."
-          />
-        </el-col>
-        <el-col>
-          <input
-            @keypress.enter="onSubmit"
-            v-model="form.password"
-            placeholder="Mot de passe..."
-            type="password"
-          />
-        </el-col>
-      </el-row>
-      <button @click="onSubmit">Connexion</button>
+      <h2>Veuillez vous connecter via Discord</h2>
+      <a
+        id="login"
+        href="https://discord.com/api/oauth2/authorize?client_id=937049622784917565&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2F&response_type=code&scope=identify%20guilds%20email"
+      >
+        <img :src="logo" />
+      </a>
     </el-col>
   </el-row>
 </template>
 
 <script lang="ts" setup>
-import { checkLogin } from "@/store/app";
-import { reactive } from "vue";
-
-// do not use same name with ref
-const form = reactive({
-  name: "",
-  password: "",
-});
-
-const onSubmit = () => {
-  checkLogin({ username: form.name, password: form.password });
-};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const logo = require("../assets/discord-logo.png");
 </script>
 
 <style lang="scss" scoped>
@@ -43,11 +22,9 @@ input {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
-button {
-  width: auto;
+img {
+  width: 300px;
   height: auto;
-  background-color: rgba(100, 60, 28, 0.8);
-  border-radius: 10px;
 }
 .el-row {
   height: 100%;
