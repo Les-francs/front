@@ -4,6 +4,7 @@ import Layout from "@/layout/index.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import { AUTH_TYPE } from "@/store/app";
+import { ElMessage } from "element-plus";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -96,6 +97,36 @@ router.beforeEach(async function (to, from, next) {
       })
       .catch((reason) => {
         console.error(reason);
+        state.value.authenticated = false;
+
+        window.localStorage.removeItem(AUTH_KEY);
+        window.localStorage.removeItem(AUTH_TYPE);
+      });
+
+    await fetch(
+      "https://discord.com/api/users/@me/guilds/873641824181432392/member",
+      {
+        headers: {
+          authorization: `${tokenType} ${token}`,
+        },
+      }
+    )
+      .then((result) => result.json())
+      .then((response) => {
+        if (!(response.message && response.message === "401: Unauthorized")) {
+          if (response.roles.length === 0) {
+            state.value.authenticated = false;
+
+            window.localStorage.removeItem(AUTH_KEY);
+            window.localStorage.removeItem(AUTH_TYPE);
+            ElMessage.error({
+              message:
+                'Seul les membres de la maison "Les Francs" sont autorisés !',
+            });
+          }
+        }
+      })
+      .catch(() => {
         state.value.authenticated = false;
 
         window.localStorage.removeItem(AUTH_KEY);

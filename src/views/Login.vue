@@ -4,7 +4,7 @@
       <h2>Veuillez vous connecter via Discord</h2>
       <a
         id="login"
-        href="https://discord.com/api/oauth2/authorize?client_id=937049622784917565&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2F&response_type=code&scope=identify%20guilds%20email"
+        href="https://discord.com/api/oauth2/authorize?client_id=937049622784917565&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2F&response_type=code&scope=guilds.members.read%20identify"
       >
         <img :src="logo" />
       </a>
