@@ -18,7 +18,7 @@ export const getToken = async (
     client_secret: process.env.VUE_APP_DISCORD_CLIENT_SECRET,
     grant_type: "authorization_code",
     code: to.query.code as string,
-    redirect_uri: process.env.VUE_APP_DISCORD_REDIRECT_URI,
+    redirect_uri: decodeURIComponent(process.env.VUE_APP_DISCORD_REDIRECT_URI),
   };
 
   for (const property in details) {
