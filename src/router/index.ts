@@ -77,7 +77,7 @@ router.beforeEach(async function (to, from, next) {
     document.title = previousNearestWithMeta.meta.title as string;
   }
 
-  if (token !== "") {
+  if (token && token !== "") {
     const tokenType = window.localStorage.getItem(AUTH_TYPE);
 
     await fetch("https://discord.com/api/users/@me", {

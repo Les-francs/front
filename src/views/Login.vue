@@ -13,7 +13,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const logo = require("../assets/discord-logo.png");
 
-const href = `https://discord.com/api/oauth2/authorize?client_id=${process.env.VUE_APP_DISCORD_CLIENT_ID}&redirect_uri=${process.env.VUE_APP_DISCORD_REDIRECT_URI}&response_type=code&scope=guilds.members.read%20identify`;
+const href = `https://discord.com/api/oauth2/authorize?client_id=${process.env.VUE_APP_DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.VUE_APP_DISCORD_REDIRECT_URI)}&response_type=code&scope=guilds.members.read%20identify`;
 </script>
 
 <style lang="scss" scoped>
